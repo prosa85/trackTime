@@ -19,6 +19,12 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/developer', function(){
+	return view('about.developer');
+});
+Route::get('/contact', function(){
+	return view('about.contactme');
+});
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::resource('posts', 'PostsController');
@@ -33,5 +39,12 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('favorites', 'FavoritesController');
 });
 
+Route::get('imageprofile/{image}', ['as' => 'image', function($image = 'User-icon.png')
+{
+    $path = storage_path().'\\images\\'.$image;
 
+    if (file_exists($path)) { 
+        return response()->file($path);
+    }
+}]);
 

@@ -40,8 +40,11 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Gym App
-                </a><small>by Pablo Rosa</small>
+                    Web App
+                </a>
+                <a class="navbar-brand" href="{{ url('/developer') }}">
+                    by Pablo Rosa
+                </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
