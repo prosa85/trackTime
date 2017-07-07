@@ -7,7 +7,10 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Welcome To My Time tracking App</div>
                 <div class="text-center">
-                       <img src="assets/images/Time-Tracking.png">
+                       <a href="/timetrack">
+                         
+                           <img src="assets/images/Time-Tracking.png">
+                       </a>
                 </div>
                 <div class="panel-body">
                 <!-- <p>Testing my routes</p> -->

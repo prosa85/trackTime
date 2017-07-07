@@ -18,7 +18,10 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', function () {
+    
+    return view('welcome');
+});
 Route::get('/developer', function(){
 	return view('about.developer');
 });
@@ -37,6 +40,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::resource('ex_notes', 'Ex_notesController');
 	Route::resource('sets', 'SetsController');
 	Route::resource('favorites', 'FavoritesController');
+	Route::resource('timetrack', 'TimetrackController');
 });
 
 Route::get('imageprofile/{image}', ['as' => 'image', function($image = 'User-icon.png')
