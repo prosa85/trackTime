@@ -52,8 +52,10 @@
             @endforeach
             </tbody>
         </table>
+        <div class="text-center">
+                <div class="pagination"> {!! $timetrack->render() !!} </div>
+        </div>
         @include('timetrack.createTime')
-        <div class="pagination"> {!! $timetrack->render() !!} </div>
     </div>
 
 </div>
