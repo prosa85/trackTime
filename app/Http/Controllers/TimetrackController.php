@@ -28,7 +28,7 @@ class TimetrackController extends Controller
             return redirect()->route('root');
         }
         $user = \Auth::user();
-        $times= Timetrack::forUser();
+        $times= Timetrack::forUser()->orderBy('user_id','desc');
         $timetrack = $times->paginate(15);
 
         return view('timetrack.index', compact('timetrack','user'));
