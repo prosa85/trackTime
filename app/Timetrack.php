@@ -50,9 +50,9 @@ class Timetrack extends Model
         $user = \Auth::user();
         return $user->role == 1? $query->where('user_id',$user->id):$query;
     }
-    public function scopeForWeek($query,$week){
+    public function scopeForWeek($query,$week, $user){
         
-        return $query->where('week',$week);
+        return $query->where([['week',$week],['user_id',$user->id]]);
     }
 
     public function user(){

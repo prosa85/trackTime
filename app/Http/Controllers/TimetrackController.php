@@ -36,7 +36,7 @@ class TimetrackController extends Controller
 
     public function weekForUser($week, User $user){
         
-        $times= Timetrack::forUser()->forWeek($week);
+        $times= Timetrack::forWeek($week,$user);
         $timetrack = $times->paginate(15);
         
         return view('timetrack.index', compact('timetrack','user','week'));

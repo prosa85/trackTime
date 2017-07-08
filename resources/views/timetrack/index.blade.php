@@ -26,7 +26,7 @@
                 {{-- */$x++;/* --}}
                 <tr>
                     
-                    <td><a href="timetrack/week/{{ $item->week }}/user/{{$item->user->id}}">{{ $item->week }}</a></td>
+                    <td><a href='/timetrack/week/{{ $item->week }}/user/{{$item->user->id}}'>{{ $item->week }}</a></td>
                     @if($user->role>1)
                         <td>{{ $item->user->name }}</td>
                     @endif
