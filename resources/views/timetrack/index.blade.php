@@ -12,7 +12,7 @@
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
-                    <th>S.No</th>
+                    <th>Week</th>
                     @if($user->role>1)
                         <th>Usuario</th>
                     @endif
