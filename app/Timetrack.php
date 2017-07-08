@@ -26,7 +26,7 @@ class Timetrack extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','start','end'];
+    protected $fillable = ['user_id','start','end','week'];
 
     protected $appents = ['hours','user'];
 
@@ -50,9 +50,14 @@ class Timetrack extends Model
         $user = \Auth::user();
         return $user->role == 1? $query->where('user_id',$user->id):$query;
     }
+    public function scopeForWeek($query,$week){
+        
+        return $query->where('week',$week);
+    }
 
     public function user(){
         return $this->belongsTo('App\User');
     }
+
 
 }

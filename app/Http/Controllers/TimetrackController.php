@@ -9,7 +9,7 @@ use App\Timetrack;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
-
+use App\User;
 class TimetrackController extends Controller
 {   
     public function __construct(){
@@ -30,12 +30,16 @@ class TimetrackController extends Controller
         $user = \Auth::user();
         $times= Timetrack::forUser();
         $timetrack = $times->paginate(15);
-        
+
         return view('timetrack.index', compact('timetrack','user'));
     }
 
-    public function weekForUser($week, $user){
-        dd([$week,$user]);
+    public function weekForUser($week, User $user){
+        
+        $times= Timetrack::forUser()->forWeek($week);
+        $timetrack = $times->paginate(15);
+        
+        return view('timetrack.index', compact('timetrack','user','week'));
     }
 
     /**

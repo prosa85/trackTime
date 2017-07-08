@@ -5,6 +5,10 @@
 
     <h1>Time Track <a href="{{ url('/timetrack/create') }}" class="btn btn-primary btn-xs" title="Add New Time"><span class="glyphicon glyphicon-plus" aria-hidden="true"/></a></h1>
     <div class="table">
+    @if(isset($week))
+        <div><a href="/timetrack">Go back</a></div>
+        <div class="text-danger">Showing results for week {{$week}} for user {{$user->name}} </div>
+    @endif
         <table class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
@@ -22,8 +26,11 @@
                 {{-- */$x++;/* --}}
                 <tr>
                     
-                    <td>{{ $x }}</td>
-                    <td>{{ $item->user->name }}</td>
+                    <td><a href="timetrack/week/{{ $item->week }}/user/{{$item->user->id}}">{{ $item->week }}</a></td>
+                    @if($user->role>1)
+                        <td>{{ $item->user->name }}</td>
+                    @endif
+                    
                     <td>{{ $item->start }}</td><td>{{ $item->end }}</td><td> {{$item->hours}} </td>
                     <td>
                         

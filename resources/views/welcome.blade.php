@@ -7,10 +7,13 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Welcome To My Time tracking App</div>
                 <div class="text-center">
-                       <a href="/timetrack">
-                         
-                           <img src="assets/images/Time-Tracking.png">
-                       </a>
+                       @if (!Auth::guest())
+                         <a href="/timetrack">
+                              <img src="assets/images/Time-Tracking.png">
+                         </a>
+                      @else
+                      <h1>Welcome</h1>
+                      @endif
                 </div>
                 <div class="panel-body">
                 <!-- <p>Testing my routes</p> -->
