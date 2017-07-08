@@ -50,6 +50,9 @@
                     </td>
                 </tr>
             @endforeach
+                <tr>
+                    <td>Total</td><td colspan="@if($user->role>1)4 @else 3 @endif" class="text-right">{{$sum}} </td><td></td>
+                </tr>
             </tbody>
         </table>
         <div class="text-center">

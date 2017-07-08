@@ -29,17 +29,21 @@ class TimetrackController extends Controller
         }
         $user = \Auth::user();
         $times= Timetrack::forUser()->orderBy('user_id','desc');
-        $timetrack = $times->paginate(15);
 
-        return view('timetrack.index', compact('timetrack','user'));
+        $timetrack = $times->paginate(15);
+        $sum = $timetrack->sum('hours');
+
+        // dd($times->get()->toArray());
+        return view('timetrack.index', compact('timetrack','user', 'sum'));
     }
 
     public function weekForUser($week, User $user){
         
         $times= Timetrack::forWeek($week,$user);
         $timetrack = $times->paginate(15);
+        $sum = $timetrack->sum('hours');
         
-        return view('timetrack.index', compact('timetrack','user','week'));
+        return view('timetrack.index', compact('timetrack','user','week','sum'));
     }
 
     /**
