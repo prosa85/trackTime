@@ -11,17 +11,31 @@ use Carbon\Carbon;
 use Session;
 
 class TimetrackController extends Controller
-{
+{   
+    public function __construct(){
+
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return void
      */
     public function index()
-    {
-        $timetrack = Timetrack::paginate(15);
+    {   
+        if(!\Auth::id()){
+            
+            return redirect()->route('root');
+        }
+        $user = \Auth::user();
+        $times= Timetrack::forUser();
+        $timetrack = $times->paginate(15);
+        
+        return view('timetrack.index', compact('timetrack','user'));
+    }
 
-        return view('timetrack.index', compact('timetrack'));
+    public function weekForUser($week, $user){
+        dd([$week,$user]);
     }
 
     /**
@@ -41,8 +55,13 @@ class TimetrackController extends Controller
      */
     public function store(Request $request)
     {
+        if(!\Auth::id()){
+            
+            return redirect()->route('root');
+        }
         //dd($request->all());
         $data['start'] = Carbon::parse($request->start)->timestamp;
+        $data['week'] = Carbon::parse($request->start)->weekOfYear;
         $data['end'] = Carbon::parse($request->end)->timestamp;
         $data['user_id'] = \Auth::id();
         
@@ -76,6 +95,7 @@ class TimetrackController extends Controller
      */
     public function edit($id)
     {
+
         $timetrack = Timetrack::findOrFail($id);
 
         return view('timetrack.edit', compact('timetrack'));
@@ -90,10 +110,13 @@ class TimetrackController extends Controller
      */
     public function update($id, Request $request)
     {
-        $this->validate($request, ['user_id' => 'integer; end', ]);
 
+        
         $timetrack = Timetrack::findOrFail($id);
-        $timetrack->update($request->all());
+        $data['start'] = Carbon::parse($request->start)->timestamp;
+        $data['week'] = Carbon::parse($request->start)->weekOfYear;
+        $data['end'] = Carbon::parse($request->end)->timestamp;
+        $timetrack->update($data);
 
         Session::flash('flash_message', 'Timetrack updated!');
 

@@ -14,7 +14,7 @@
 Route::get('/', function () {
     
     return view('welcome');
-});
+})->name('root');
 
 Route::auth();
 
@@ -29,11 +29,12 @@ Route::get('/contact', function(){
 	return view('about.contactme');
 });
 
+
 Route::group(['middleware' => ['web', 'auth']], function () {
 	Route::resource('posts', 'PostsController');
 	Route::get('allposts', 'PostsController@all');
 });
-
+Route::get('timetrack/week/{week}/user/{user}','TimetrackController@weekForUser');
 Route::group(['middleware' => ['web']], function () {
 	Route::resource('images', 'ImagesController');
 	Route::resource('exercises', 'ExercisesController');

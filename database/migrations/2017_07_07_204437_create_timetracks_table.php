@@ -16,6 +16,7 @@ class CreateTimetracksTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('start');
+            $table->integer('week');
             $table->integer('end');
             $table->timestamps();
         });

@@ -28,7 +28,7 @@ class Timetrack extends Model
      */
     protected $fillable = ['user_id','start','end'];
 
-    protected $appents = ['hours'];
+    protected $appents = ['hours','user'];
 
     public function getStartAttribute($value){
         return Carbon::createFromTimestamp($value)->toDateTimeString();
@@ -43,7 +43,16 @@ class Timetrack extends Model
         $start = Carbon::createFromTimestamp($this->attributes['start']);
         $end = Carbon::createFromTimestamp($this->attributes['end']);
 
-        return $start->diffInHours($end) ;
+        return $start->diffInMinutes($end)/60 ;
+    }
+
+    public function scopeForUser($query){
+        $user = \Auth::user();
+        return $user->role == 1? $query->where('user_id',$user->id):$query;
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 
 }

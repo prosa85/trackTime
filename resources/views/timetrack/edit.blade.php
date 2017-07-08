@@ -3,33 +3,33 @@
 @section('content')
 <div class="container">
 
-    <h1>Edit Post {{ $post->id }}</h1>
+    <h1>Edit timetrack {{ $timetrack->id }}</h1>
 
-    {!! Form::model($post, [
+    {!! Form::model($timetrack, [
         'method' => 'PATCH',
-        'url' => ['/posts', $post->id],
+        'url' => ['/timetrack', $timetrack->id],
         'class' => 'form-horizontal'
     ]) !!}
 
                 <div class="form-group {{ $errors->has('user_id') ? 'has-error' : ''}}">
-                {!! Form::label('user_id', trans('posts.user_id'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('user_id', trans('timetracks.user_id'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::number('user_id', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('user_id', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
-            <div class="form-group {{ $errors->has('body') ? 'has-error' : ''}}">
-                {!! Form::label('body', trans('posts.body'), ['class' => 'col-sm-3 control-label']) !!}
+            <div class="form-group {{ $errors->has('start') ? 'has-error' : ''}}">
+                {!! Form::label('start', trans('timetracks.start'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('body', '<p class="help-block">:message</p>') !!}
+                    {!! Form::text('start', null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('start', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('image_id') ? 'has-error' : ''}}">
-                {!! Form::label('image_id', trans('posts.image_id'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('end', trans('timetracks.end'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::number('image_id', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('image_id', '<p class="help-block">:message</p>') !!}
+                    {!! Form::text('end', null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('end', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
 
