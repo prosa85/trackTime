@@ -53,6 +53,10 @@
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     @if (!Auth::guest())
                         <li><a href="{{ url('/timetrack') }}">Time Entries</a></li>
+                        @if (Auth::user()->isAdmin())
+
+                            <li><a href="{{ url('/users') }}">Users</a></li>
+                        @endif
                     @endif
                 </ul>
 
