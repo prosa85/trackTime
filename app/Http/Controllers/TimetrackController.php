@@ -39,7 +39,7 @@ class TimetrackController extends Controller
 
     public function weekForUser($week, User $user){
         
-        $times= Timetrack::forWeek($week,$user);
+        $times= Timetrack::forWeek($week,$user)->orderBy('start','ascd');
         $timetrack = $times->paginate(15);
         $sum = $timetrack->sum('hours');
         
