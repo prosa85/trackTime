@@ -120,7 +120,9 @@ class TimetrackController extends Controller
     {
 
         
+
         $timetrack = Timetrack::findOrFail($id);
+        $data['user_id'] = $request->user_id;
         $data['start'] = Carbon::parse($request->start)->timestamp;
         $data['week'] = Carbon::parse($request->start)->weekOfYear;
         $data['end'] = Carbon::parse($request->end)->timestamp;
