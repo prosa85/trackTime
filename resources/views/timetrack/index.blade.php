@@ -4,7 +4,7 @@
 <div class="container">
 
     <h1>Time Track <a href="{{ url('/timetrack/create') }}" class="btn btn-primary btn-xs" title="Add New Time"><span class="glyphicon glyphicon-plus" aria-hidden="true"/></a></h1>
-    @if($user->role ==3)
+    
         <div><form action="/file" method="POST" class="form-inline" role="form" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
@@ -16,7 +16,7 @@
         
             <button type="submit" class="btn btn-primary">Submit</button>
         </form></div>
-    @endif
+    
     <div class="table">
     @if(isset($week))
         <div><a href="/timetrack">Go back</a></div>
