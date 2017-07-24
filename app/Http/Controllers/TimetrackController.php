@@ -28,7 +28,7 @@ class TimetrackController extends Controller
             return redirect()->route('root');
         }
         $user = \Auth::user();
-        $times= Timetrack::forUser()->orderBy('user_id','desc');
+        $times= Timetrack::forUser()->orderBy('start','desc');
 
         $timetrack = $times->paginate(15);
         $sum = $timetrack->sum('hours');
@@ -39,7 +39,7 @@ class TimetrackController extends Controller
 
     public function weekForUser($week, User $user){
         
-        $times= Timetrack::forWeek($week,$user);
+        $times= Timetrack::forWeek($week,$user)->orderBy('start','ascd');
         $timetrack = $times->paginate(15);
         $sum = $timetrack->sum('hours');
         
@@ -120,7 +120,9 @@ class TimetrackController extends Controller
     {
 
         
+
         $timetrack = Timetrack::findOrFail($id);
+        $data['user_id'] = $request->user_id;
         $data['start'] = Carbon::parse($request->start)->timestamp;
         $data['week'] = Carbon::parse($request->start)->weekOfYear;
         $data['end'] = Carbon::parse($request->end)->timestamp;

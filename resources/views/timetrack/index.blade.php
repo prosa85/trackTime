@@ -4,17 +4,19 @@
 <div class="container">
 
     <h1>Time Track <a href="{{ url('/timetrack/create') }}" class="btn btn-primary btn-xs" title="Add New Time"><span class="glyphicon glyphicon-plus" aria-hidden="true"/></a></h1>
-    <div><form action="/file" method="POST" class="form-inline" role="form" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        <div class="form-group">
-            <label class="sr-only" for="">File</label>
-            <input type="file"  accept=".csv,.txt" class="form-control" name="csv" id="csv" placeholder="Input field">
-        </div>
     
+        <div><form action="/file" method="POST" class="form-inline" role="form" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label class="sr-only" for="">File</label>
+                <input type="file"  accept=".csv,.txt" class="form-control" name="csv" id="csv" placeholder="Input field">
+            </div>
         
+            
+        
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form></div>
     
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form></div>
     <div class="table">
     @if(isset($week))
         <div><a href="/timetrack">Go back</a></div>
