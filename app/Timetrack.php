@@ -31,11 +31,11 @@ class Timetrack extends Model
     protected $appents = ['hours','user'];
 
     public function getStartAttribute($value){
-        return Carbon::createFromTimestamp($value)->toDateTimeString();
+        return Carbon::createFromTimestamp($value)->toDayDateTimeString();
 
     }
     public function getEndAttribute($value){
-        return Carbon::createFromTimestamp($value)->toDateTimeString();
+        return Carbon::createFromTimestamp($value)->toDayDateTimeString();
 
     }
 
