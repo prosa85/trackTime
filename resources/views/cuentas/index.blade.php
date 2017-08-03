@@ -18,12 +18,12 @@
 				<tbody>
 					@foreach ($cuentas as $cuenta)
 					<tr>
-						<td>{{ $cuenta->date }}</td><td> {{$cuenta->amount}} </td>
+						<td>{{ $cuenta->date }}</td><td> ${{$cuenta->amount}} </td>
 					</tr>
 					@endforeach
 					
 				</tbody>
-				<tfooter><tr><td>Total</td><td>{{$total}}</td></tr></tfooter>
+				<tfooter><tr><td>Total</td><td>${{$total}}</td></tr></tfooter>
 			</table>
 		</div>
 		<form method="POST" action="/cuentas">
