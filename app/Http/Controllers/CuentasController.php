@@ -11,7 +11,7 @@ use Carbon\Carbon;
 class CuentasController extends Controller
 {	
 	public function __construct(){
-		$this->middleware('onlyAdmin');
+		$this->middleware('onlyAdmin',['only'=>['store']]);
 	}
 
     public function index(){

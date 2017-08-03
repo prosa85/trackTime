@@ -17,7 +17,7 @@ class onlyAdmin
     public function handle($request, Closure $next)
     {   
         if(Auth::id()!=1){
-            return response('No you cant',401);
+            return response('You cant post to this url',401);
         }
 
         return $next($request);
