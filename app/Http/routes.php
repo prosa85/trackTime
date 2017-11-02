@@ -12,14 +12,14 @@
 */
 
 Route::get('/', function () {
-    
+
     return view('welcome');
 })->name('root');
 
 Route::auth();
 
 Route::get('/home', function () {
-    
+
     return view('welcome');
 });
 Route::get('/developer', function(){
@@ -37,7 +37,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 Route::get('timetrack/week/{week}/user/{user}','TimetrackController@weekForUser');
 Route::group(['middleware' => ['web']], function () {
 	Route::resource('users', 'userController');
-	Route::resource('cuentas', 'CuentasController');
+    Route::resource('cuentas', 'CuentasController');
+	Route::resource('bank', 'CuentasController');
 	Route::resource('images', 'ImagesController');
 	Route::resource('exercises', 'ExercisesController');
 	Route::resource('ex_notes', 'Ex_notesController');
@@ -50,7 +51,7 @@ Route::get('imageprofile/{image}', ['as' => 'image', function($image = 'User-ico
 {
     $path = storage_path().'\\images\\'.$image;
 
-    if (file_exists($path)) { 
+    if (file_exists($path)) {
         return response()->file($path);
     }
 }]);
