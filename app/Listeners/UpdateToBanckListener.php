@@ -5,6 +5,8 @@ namespace App\Listeners;
 use App\Events\UpdateToBanckEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Notification;
+use App\Notifications\BankUpdate;
 
 class UpdateToBanckListener
 {
@@ -26,6 +28,8 @@ class UpdateToBanckListener
      */
     public function handle(UpdateToBanckEvent $event)
     {
-        //
+        Notification::route('mail', 'gustavo4581@gmail.com')
+            ->route('mail', 'gustavo4581@gmail.com')
+            ->notify(new BankUpdate($event->monto));
     }
 }

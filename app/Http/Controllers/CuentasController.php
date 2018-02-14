@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Cuenta;
+use App\Events\UpdateToBanckEvent;
 use App\Http\Requests;
 use Carbon\Carbon;
 
@@ -26,6 +27,8 @@ class CuentasController extends Controller
     	$monto->amount = $request->monto;
     	$monto->date = Carbon::now()->toDateString();
     	$monto->save();
-    	return redirect('cuentas');
+    	event(new UpdateToBanckEvent($monto));
+        return redirect('cuentas');
+
     }
 }

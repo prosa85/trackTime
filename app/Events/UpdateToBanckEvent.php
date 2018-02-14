@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events\;
+namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -14,14 +14,15 @@ class UpdateToBanckEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $monto;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($monto)
     {
-        //
+        $this->monto = $monto;
     }
 
     /**
