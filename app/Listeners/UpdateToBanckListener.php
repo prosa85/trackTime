@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Notification;
 use App\Notifications\BankUpdate;
 
-class UpdateToBanckListener
+class UpdateToBanckListener implements ShouldQueue
 {
     /**
      * Create the event listener.
