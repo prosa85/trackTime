@@ -28,10 +28,11 @@ class UpdateToBanckListener
      */
     public function handle(UpdateToBanckEvent $event)
     {
-        Notification::route('mail', 'gustavo4581@gmail.com')
-            ->notify(new BankUpdate($event->monto->amount));
 
         Notification::route('mail', 'prosa85@yahoo.com')
+            ->notify(new BankUpdate($event->monto->amount));
+        
+        Notification::route('mail', 'gustavo4581@gmail.com')
             ->notify(new BankUpdate($event->monto->amount));
     }
 }
