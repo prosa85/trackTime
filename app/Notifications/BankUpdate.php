@@ -11,15 +11,17 @@ class BankUpdate extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    protected $monto;
+    protected $monto, $total, $level;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($monto)
+    public function __construct($monto, $total)
     {
         $this->monto = $monto;
+        $this->total = $total;
+        $this->level  = $monto>0? 'success' : 'error';
     }
 
     /**
@@ -42,8 +44,11 @@ class BankUpdate extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->level($this->level)
                     ->subject('Gordos Bank account')
+                    ->greeting('Hey Gordo,')
                     ->line('Your balance have changed by '. $this->monto)
+                    ->line('Gordos final balance is '. $this->total)
                     ->action('check my bank', url('/cuentas'))
                     ->line('Thank you for using Gordos Bank');
     }
