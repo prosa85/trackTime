@@ -11,14 +11,14 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Week</th><th>Monto</th>
+						<th>Week</th><th>Monto</th><th>Pay1</th><th>Pay2</th><th>Total</th>
 					</tr>
 					
 				</thead>
 				<tbody>
 					@foreach ($pagos as $pago)
 					<tr>
-						<td>{{ $pago->week }}</td><td> ${{ $pago->netpay }} </td>
+						<td>{{ $pago->week }}</td><td> ${{ $pago->netpay }} </td><td> ${{ $hours[$pago->week]["pay1"] }} </td><td> ${{ $hours[$pago->week]["pay2"] }} </td><td> ${{ $hours[$pago->week]["total"] }} </td>
 					</tr>
 					@endforeach
 					

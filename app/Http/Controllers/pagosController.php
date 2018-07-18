@@ -25,17 +25,18 @@ class pagosController extends Controller
         $pagos = Pago::all();
         $hours = [];
         foreach ($pagos as $pago) {
-            dump($pago->week);
+            // dump($pago->week);
             
-            $hours["pablo"][$pago->week] = Timetrack::where([['week', $pago->week],['user_id', 1 ]])->get()->sum('hours');
-            $hours["pablo"]["pago"] = $hours["pablo"][$pago->week] * 20;
-            $hours["gordo"][$pago->week] = Timetrack::where([['week', $pago->week],['user_id', 3 ]])->get()->sum('hours');
-            $hours["gordo"]["pago"] = $hours["gordo"][$pago->week] * 5;
+            $hours[$pago->week]["pablo"] = Timetrack::where([['week', $pago->week],['user_id', 1 ]])->get()->sum('hours');
+            $hours[$pago->week]["pay1"] = $hours[$pago->week]["pablo"] * 20;
+            $hours[$pago->week]["gordo"] = Timetrack::where([['week', $pago->week],['user_id', 3 ]])->get()->sum('hours');
+            $hours[$pago->week]["pay2"] = $hours[$pago->week]["gordo"] * 5;
+            $hours[$pago->week]["total"] =  $hours[$pago->week]["pay1"] + $hours[$pago->week]["pay2"];
         }
-        dump($hours);
+        
         // return $hours->forPagos()->sum("hours");
         // dump($users->last()->timetrackForWeek(28));
-        return view("pagos.index",compact("pagos", "users"));
+        return view("pagos.index",compact("pagos", "users", "hours"));
     }
 
     /**
