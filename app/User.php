@@ -32,6 +32,15 @@ class User extends Authenticatable
         return static::where('role','<=',Auth::user()['role']);
     }
 
+    public function timetrack(){
+        return $this->hasMany('App\Timetrack');
+    }
+
+    public function timetrackForWeek($week){
+        return $this->hasMany('App\Timetrack')->where('week',$week)->get();
+
+    }
+
     public static function isAdmin(){
         return Auth::user()->role ==3;
     }

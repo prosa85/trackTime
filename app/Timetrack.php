@@ -32,8 +32,8 @@ class Timetrack extends Model
 
     public function getStartAttribute($value){
         return Carbon::createFromTimestamp($value)->toDayDateTimeString();
-
     }
+
     public function getEndAttribute($value){
         return Carbon::createFromTimestamp($value)->toDayDateTimeString();
 
@@ -53,6 +53,10 @@ class Timetrack extends Model
     public function scopeForWeek($query,$week, $user){
         
         return $query->where([['week',$week],['user_id',$user->id]]);
+    }
+    public function scopeForPagos($query){
+        
+        return $query->get()->keyBy('week')->groupBy('user_id');
     }
 
     public function user(){

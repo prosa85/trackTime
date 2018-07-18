@@ -38,6 +38,7 @@ Route::get('timetrack/week/{week}/user/{user}','TimetrackController@weekForUser'
 Route::group(['middleware' => ['web']], function () {
 	Route::resource('users', 'userController');
     Route::resource('cuentas', 'CuentasController');
+    Route::resource('pagos', 'pagosController');
 	Route::resource('bank', 'CuentasController');
 	Route::resource('images', 'ImagesController');
 	Route::resource('exercises', 'ExercisesController');

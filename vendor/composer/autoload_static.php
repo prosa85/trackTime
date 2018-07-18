@@ -370,6 +370,7 @@ class ComposerStaticInit5111d9b6c1e59b70f3773d9c6b4a1d9c
         'App\\Http\\Controllers\\SetsController' => __DIR__ . '/../..' . '/app/Http/Controllers/SetsController.php',
         'App\\Http\\Controllers\\TimetrackController' => __DIR__ . '/../..' . '/app/Http/Controllers/TimetrackController.php',
         'App\\Http\\Controllers\\addFileController' => __DIR__ . '/../..' . '/app/Http/Controllers/addFileController.php',
+        'App\\Http\\Controllers\\pagosController' => __DIR__ . '/../..' . '/app/Http/Controllers/pagosController.php',
         'App\\Http\\Controllers\\userController' => __DIR__ . '/../..' . '/app/Http/Controllers/userController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

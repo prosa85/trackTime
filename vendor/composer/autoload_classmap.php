@@ -25,6 +25,7 @@ return array(
     'App\\Http\\Controllers\\SetsController' => $baseDir . '/app/Http/Controllers/SetsController.php',
     'App\\Http\\Controllers\\TimetrackController' => $baseDir . '/app/Http/Controllers/TimetrackController.php',
     'App\\Http\\Controllers\\addFileController' => $baseDir . '/app/Http/Controllers/addFileController.php',
+    'App\\Http\\Controllers\\pagosController' => $baseDir . '/app/Http/Controllers/pagosController.php',
     'App\\Http\\Controllers\\userController' => $baseDir . '/app/Http/Controllers/userController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
