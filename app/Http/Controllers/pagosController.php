@@ -32,7 +32,7 @@ class pagosController extends Controller
             $hours[$pago->week]["gordo"] = Timetrack::where([['week', $pago->week],['user_id', 3 ]])->get()->sum('hours');
             $hours[$pago->week]["pay2"] = $hours[$pago->week]["gordo"] * 5;
             $hours[$pago->week]["total"] =  $hours[$pago->week]["pay1"] + $hours[$pago->week]["pay2"];
-            $hours[$pago->week]["color"] =  $hours[$pago->week]["total"] < $pago->netpay? "text-danger" : "text-info";
+            $hours[$pago->week]["color"] =  $hours[$pago->week]["total"] > $pago->netpay? "text-danger" : "text-info";
         }
         
         // return $hours->forPagos()->sum("hours");
