@@ -31,7 +31,7 @@ class pagosController extends Controller
             $hours["gordo"][$pago->week] = Timetrack::where([['week', $pago->week],['user_id', 2 ]])->get()->sum('hours');
         }
         dump($hours);
-        return $hours->forPagos()->sum("hours");
+        // return $hours->forPagos()->sum("hours");
         // dump($users->last()->timetrackForWeek(28));
         return view("pagos.index",compact("pagos", "users"));
     }
