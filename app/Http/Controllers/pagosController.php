@@ -107,6 +107,10 @@ class pagosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pago::destroy($id);
+
+        \Session::flash('flash_message', 'Timetrack deleted!');
+
+        return redirect('pagos');
     }
 }

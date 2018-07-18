@@ -12,7 +12,7 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Week</th><th>Monto</th><th>Total</th><th>Pay1</th><th>Pay2</th><th>PayDay</th>
+						<th>Week</th><th>Monto</th><th>Total</th><th>Pay1</th><th>Pay2</th><th>PayDay</th><th>action</th>
 					</tr>
 					
 				</thead>
@@ -20,7 +20,21 @@
 					@foreach ($pagos as $pago)
 					<tr>
 
-						<td>{{ $pago->week }}</td><td> ${{ $pago->netpay }} </td><td class="{{ $hours[$pago->week]['color'] }}"> ${{ $hours[$pago->week]["total"] }} </td><td> ${{ $hours[$pago->week]["pay1"] }} </td><td> ${{ $hours[$pago->week]["pay2"] }} </td><td> ${{ $pago->paydate }} </td>
+						<td>{{ $pago->week }}</td><td> ${{ $pago->netpay }} </td><td class="{{ $hours[$pago->week]['color'] }}"> ${{ $hours[$pago->week]["total"] }} </td><td> ${{ $hours[$pago->week]["pay1"] }} </td><td> ${{ $hours[$pago->week]["pay2"] }} </td><td> {{ $pago->paydate }} </td>
+						<td> 
+							{!! Form::open([
+                            'method'=>'DELETE',
+                            'url' => ['/pagos', $pago->id],
+                            'style' => 'display:inline'
+                        ]) !!}
+                        {!! Form::button('<span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete Time" />', array(
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-danger btn-xs',
+                                    'title' => 'Delete Time',
+                                    'onclick'=>'return confirm("Confirm delete?")'
+                            ));!!}
+                        {!! Form::close() !!}
+                    </td>
 					</tr>
 					@endforeach
 					
