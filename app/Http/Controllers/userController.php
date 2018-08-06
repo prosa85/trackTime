@@ -9,9 +9,14 @@ use App\User;
 
 class userController extends Controller
 {
-    //
+    public function __construct(){
+        $this->middleware('onlyAdmin');
+
+    }
+
     public function index(){
-    	$users =  User::getUsers()->get();
+    	
+        $users =  User::getUsers()->get();
     	return view('user.index',compact('users'));
     }
 
