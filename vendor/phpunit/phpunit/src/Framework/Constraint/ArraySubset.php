@@ -21,7 +21,7 @@ use SebastianBergmann\Comparator\ComparisonFailure;
 class ArraySubset extends Constraint
 {
     /**
-     * @var array|\Traversable
+     * @var iterable
      */
     private $subset;
 
@@ -30,11 +30,7 @@ class ArraySubset extends Constraint
      */
     private $strict;
 
-    /**
-     * @param array|\Traversable $subset
-     * @param bool               $strict Check for object identity
-     */
-    public function __construct($subset, $strict = false)
+    public function __construct(iterable $subset, bool $strict = false)
     {
         parent::__construct();
 
@@ -58,9 +54,6 @@ class ArraySubset extends Constraint
      *
      * @throws ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     * @throws \Exception
-     *
-     * @return mixed
      */
     public function evaluate($other, $description = '', $returnResult = false)
     {
@@ -69,13 +62,12 @@ class ArraySubset extends Constraint
         $other        = $this->toArray($other);
         $this->subset = $this->toArray($this->subset);
 
-        $patched = \array_replace_recursive($other, $this->subset);
+        $intersect = $this->arrayIntersectRecursive($other, $this->subset);
 
-        if ($this->strict) {
-            $result = $other === $patched;
-        } else {
-            $result = $other == $patched;
-        }
+        $this->deepSort($intersect);
+        $this->deepSort($this->subset);
+
+        $result = $this->compare($intersect, $this->subset);
 
         if ($returnResult) {
             return $result;
@@ -83,9 +75,9 @@ class ArraySubset extends Constraint
 
         if (!$result) {
             $f = new ComparisonFailure(
-                $patched,
+                $this->subset,
                 $other,
-                \print_r($patched, true),
+                \print_r($this->subset, true),
                 \print_r($other, true)
             );
 
@@ -96,10 +88,7 @@ class ArraySubset extends Constraint
     /**
      * Returns a string representation of the constraint.
      *
-     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     *
-     * @return string
      */
     public function toString(): string
     {
@@ -114,22 +103,14 @@ class ArraySubset extends Constraint
      *
      * @param mixed $other evaluated value or object
      *
-     * @throws \Exception
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
-     *
-     * @return string
      */
     protected function failureDescription($other): string
     {
         return 'an array ' . $this->toString();
     }
 
-    /**
-     * @param array|\Traversable $other
-     *
-     * @return array
-     */
-    private function toArray($other): array
+    private function toArray(iterable $other): array
     {
         if (\is_array($other)) {
             return $other;
@@ -145,5 +126,87 @@ class ArraySubset extends Constraint
 
         // Keep BC even if we know that array would not be the expected one
         return (array) $other;
+    }
+
+    private function isAssociative(array $array): bool
+    {
+        return \array_reduce(
+            \array_keys($array),
+            function (bool $carry, $key): bool {
+                return $carry || \is_string($key);
+            },
+            false
+        );
+    }
+
+    private function compare($first, $second): bool
+    {
+        return $this->strict ? $first === $second : $first == $second;
+    }
+
+    private function deepSort(array &$array): void
+    {
+        foreach ($array as &$value) {
+            if (\is_array($value)) {
+                $this->deepSort($value);
+            }
+        }
+
+        unset($value);
+
+        if ($this->isAssociative($array)) {
+            \ksort($array);
+        } else {
+            \sort($array);
+        }
+    }
+
+    private function arrayIntersectRecursive(array $array, array $subset): array
+    {
+        $intersect = [];
+
+        if ($this->isAssociative($subset)) {
+            // If the subset is an associative array, get the intersection while
+            // preserving the keys.
+            foreach ($subset as $key => $subset_value) {
+                if (\array_key_exists($key, $array)) {
+                    $array_value = $array[$key];
+
+                    if (\is_array($subset_value) && \is_array($array_value)) {
+                        $intersect[$key] = $this->arrayIntersectRecursive($array_value, $subset_value);
+                    } elseif ($this->compare($subset_value, $array_value)) {
+                        $intersect[$key] = $array_value;
+                    }
+                }
+            }
+        } else {
+            // If the subset is an indexed array, loop over all entries in the
+            // haystack and check if they match the ones in the subset.
+            foreach ($array as $array_value) {
+                if (\is_array($array_value)) {
+                    foreach ($subset as $key => $subset_value) {
+                        if (\is_array($subset_value)) {
+                            $recursed = $this->arrayIntersectRecursive($array_value, $subset_value);
+
+                            if (!empty($recursed)) {
+                                $intersect[$key] = $recursed;
+
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    foreach ($subset as $key => $subset_value) {
+                        if (!\is_array($subset_value) && $this->compare($subset_value, $array_value)) {
+                            $intersect[$key] = $array_value;
+
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $intersect;
     }
 }
