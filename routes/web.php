@@ -16,6 +16,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('root');
 
+Route::get('/logout',function(){
+	\Auth::logout();
+});
 Route::auth();
 
 Route::get('/home', function () {
