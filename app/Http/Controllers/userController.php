@@ -20,11 +20,24 @@ class userController extends Controller
     	return view('user.show',compact('user'));
     }
     public function update($id, Request $request){
-    	$user = User::findOrFail($id);
-    	$user->role = $request->role;
-    	$user->name = $request->name;
-    	$user->save();
+    	if (\Auth::user()->role==3){
+            $user = User::findOrFail($id);
+            $user->role = $request->role;
+            $user->email = $request->email;
+            $user->name = $request->name;
+            $user->save();
+        }
     	return redirect('users');
+
+
+    }
+
+    public function store($id, Request $request){
+        if (\Auth::user()->role==3){
+            User::create($request->all());
+            
+        }
+        return redirect('users');
 
 
     }
