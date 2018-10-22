@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 use Auth;
 class User extends Authenticatable
 {
+    use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -28,6 +30,15 @@ class User extends Authenticatable
     public static function getUsers(){
         return static::where('role','<=',2);
         return static::where('role','<=',Auth::user()['role']);
+    }
+
+    public function timetrack(){
+        return $this->hasMany('App\Timetrack');
+    }
+
+    public function timetrackForWeek($week){
+        return $this->hasMany('App\Timetrack')->where('week',$week)->get();
+
     }
 
     public static function isAdmin(){
