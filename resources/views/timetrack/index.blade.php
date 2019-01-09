@@ -44,7 +44,7 @@
                         <td>{{ $item->user->name }}</td>
                     @endif
                     
-                    <td>{{ $item->start }}</td><td>{{ $item->end }}</td><td> {{$item->hours}} </td><td> {{$item->commit}} </td>
+                    <td>{{ $item->start }}</td><td>{{ $item->end }}</td><td> {{$item->hours}} </td><td> <a href="https://bitbucket.org/gordos_programming/dsl-laravel/commits/{{$item->commit}}">{{$item->commit}}</a> </td>
                     <td>
                         
                         <a href="{{ url('/timetrack/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Time"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
