@@ -2,9 +2,6 @@
     <hr/>
 
     {!! Form::open(['url' => '/timetrack', 'class' => 'form-horizontal']) !!}
-
-             
-
             
             <div class="form-group {{ $errors->has('body') ? 'has-error' : ''}}">
                 {!! Form::label('start', trans('start'), ['class' => 'col-sm-3 control-label']) !!}
@@ -30,10 +27,18 @@
             </div>
             <div class="form-group {{ $errors->has('image_id') ? 'has-error' : ''}}">
                 {!! Form::label('commit', trans('Git Commit'), ['class' => 'col-sm-3 control-label']) !!}
+                @if(Auth::user()->id != 1)
                 <div class="col-sm-6">
                     {!! Form::text('commit', null, ['class' => 'form-control', 'required'=>'true']) !!}
                     {!! $errors->first('commit', '<p class="help-block">:message</p>') !!}
                 </div>
+                @else
+                <div class="col-sm-6">
+                    {!! Form::text('commit', null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('commit', '<p class="help-block">:message</p>') !!}
+                </div>
+                @endif
+
             </div>
 
 
