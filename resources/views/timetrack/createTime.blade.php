@@ -29,9 +29,9 @@
                 </div>
             </div>
             <div class="form-group {{ $errors->has('image_id') ? 'has-error' : ''}}">
-                {!! Form::label('commit', trans('commit'), ['class' => 'col-sm-3 control-label']) !!}
+                {!! Form::label('commit', trans('Git Commit'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
-                    {!! Form::text('Git Commit', null, ['class' => 'form-control', 'required'=>'true']) !!}
+                    {!! Form::text('commit', null, ['class' => 'form-control', 'required'=>'true']) !!}
                     {!! $errors->first('commit', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
