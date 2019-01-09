@@ -26,7 +26,7 @@ class Timetrack extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','start','end','week'];
+    protected $fillable = ['user_id','start','end','week','commit'];
 
     protected $appents = ['hours','user'];
 

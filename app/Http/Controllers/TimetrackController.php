@@ -68,10 +68,12 @@ class TimetrackController extends Controller
             return redirect()->route('root');
         }
         //dd($request->all());
-        $data['start'] = Carbon::parse($request->start)->timestamp;
+        $data['start'] = Carbon::parse($request->startdate .' '. $request->start)->timestamp;
         $data['week'] = Carbon::parse($request->start)->weekOfYear;
-        $data['end'] = Carbon::parse($request->end)->timestamp;
+        $data['end'] = Carbon::parse($request->enddate .' '. $request->end)->timestamp;
+        $data['commit'] = $request->commit;
         $data['user_id'] = \Auth::id();
+        // dd($data);
         
         Timetrack::create($data);
 

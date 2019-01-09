@@ -29,7 +29,7 @@
                     @if($user->role>1)
                         <th>Usuario</th>
                     @endif
-                    <th> Start </th><th> End </th><th>Hours</th> <th>Actions</th>
+                    <th> Start </th><th> End </th><th>Hours</th><th>Commit</th> <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,7 +44,7 @@
                         <td>{{ $item->user->name }}</td>
                     @endif
                     
-                    <td>{{ $item->start }}</td><td>{{ $item->end }}</td><td> {{$item->hours}} </td>
+                    <td>{{ $item->start }}</td><td>{{ $item->end }}</td><td> {{$item->hours}} </td><td> {{$item->commit}} </td>
                     <td>
                         
                         <a href="{{ url('/timetrack/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Time"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
@@ -64,7 +64,7 @@
                 </tr>
             @endforeach
                 <tr>
-                    <td>Total</td><td colspan="@if($user->role>1)4 @else 3 @endif" class="text-right">{{$sum}} </td><td></td>
+                    <td>Total</td><td colspan="@if($user->role>1)5 @else 4 @endif" class="text-right">{{$sum}} </td><td></td>
                 </tr>
             </tbody>
         </table>
