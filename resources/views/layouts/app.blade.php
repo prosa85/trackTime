@@ -41,7 +41,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Time Track
                 </a>
-                <a class="navbar-brand" href="{{ url('/developer') }}">
+                <a class="navbar-brand" href="https://www.pablo-rosa.com">
                     by Pablo Rosa
                 </a>
             </div>

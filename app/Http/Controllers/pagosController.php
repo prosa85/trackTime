@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pago;
 use App\Timetrack;
+use Carbon\Carbon;
 
 class pagosController extends Controller
 {
@@ -20,21 +21,23 @@ class pagosController extends Controller
      */
 
     public function index()
-    {   
+    {
         $users = \App\User::all()->load('timetrack');
         $pagos = Pago::all();
         $hours = [];
         foreach ($pagos as $pago) {
             // dump($pago->week);
-            
-            $hours[$pago->week]["pablo"] = Timetrack::where([['week', $pago->week],['user_id', 1 ]])->get()->sum('hours');
+            $now = Carbon::now();
+
+
+            $hours[$pago->week]["pablo"] = Timetrack::whereYear('created_at', $now->year)->where([['week', $pago->week],['user_id', 1 ]])->get()->sum('hours');
             $hours[$pago->week]["pay1"] = $hours[$pago->week]["pablo"] * 20;
-            $hours[$pago->week]["gordo"] = Timetrack::where([['week', $pago->week],['user_id', 3 ]])->get()->sum('hours');
+            $hours[$pago->week]["gordo"] = Timetrack::whereYear('created_at', $now->year)->where([['week', $pago->week],['user_id', 3 ]])->get()->sum('hours');
             $hours[$pago->week]["pay2"] = $hours[$pago->week]["gordo"] * 5;
             $hours[$pago->week]["total"] =  $hours[$pago->week]["pay1"] + $hours[$pago->week]["pay2"];
             $hours[$pago->week]["color"] =  $hours[$pago->week]["total"] > $pago->netpay? "text-danger" : "text-info";
         }
-        
+
         // return $hours->forPagos()->sum("hours");
         // dump($users->last()->timetrackForWeek(28));
         return view("pagos.index",compact("pagos", "users", "hours"));
@@ -57,9 +60,9 @@ class pagosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request ){
-        
+
         $monto = Pago::create($request->all());
-        
+
         //event(new UpdateToBanckEvent($monto));
         return redirect('pagos');
 

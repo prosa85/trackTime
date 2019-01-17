@@ -20,6 +20,7 @@ Route::get('/logout',function(){
 	\Auth::logout();
 	return redirect('home');
 });
+
 Route::auth();
 
 Route::get('/home', function () {
