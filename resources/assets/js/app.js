@@ -20,7 +20,7 @@ window.Vue = require('vue');
 const app = new Vue({
     el: '#app',
     data:{
-      showCommits:false
+      showCommits:true
     },
     methods:{
       setShowCommits(){

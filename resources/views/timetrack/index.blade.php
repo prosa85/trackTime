@@ -29,7 +29,7 @@
                     @if($user->role>1)
                         <th>Usuario</th>
                     @endif
-                    <th> Start </th><th> End </th><th>Hours</th><th v-if="showCommits">Commit</th> <th v-if="showCommits">Actions</th>
+                    <th> Start </th><th> End </th><th>Hours</th><th v-if="showCommits">Commit</th> <th @if($user->role>1) v-if="showCommits" @endif>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +45,7 @@
                     @endif
 
                     <td>{{ $item->start }}</td><td>{{ $item->end }}</td><td> {{$item->hours}} </td><td v-if="showCommits"> <a target="_BLANK" href="https://bitbucket.org/gordos_programming/dsl-laravel/commits/{{$item->commit}}">{{$item->commit}}</a> </td>
-                    <td v-if="showCommits">
+                    <td @if($user->role>1) v-if="showCommits" @endif>
 
                         <a href="{{ url('/timetrack/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Time"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
                         {!! Form::open([
