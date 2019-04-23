@@ -2,26 +2,26 @@
     <hr/>
 
     {!! Form::open(['url' => '/timetrack', 'class' => 'form-horizontal']) !!}
-            
+
             <div class="form-group {{ $errors->has('body') ? 'has-error' : ''}}">
                 {!! Form::label('start', trans('start'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-3">
-                    {!! Form::date('startdate', \Carbon\Carbon::now(), ['class' => 'form-control', 'required'=>'true']) !!}
+                    {!! Form::date('startdate', \Carbon\Carbon::now('America/new_york'), ['class' => 'form-control', 'required'=>'true']) !!}
                     {!! $errors->first('startdate', '<p class="help-block">:message</p>') !!}
                 </div>
                 <div class="col-sm-3">
-                    {!! Form::time('start', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+                    {!! Form::time('start', \Carbon\Carbon::now('America/new_york'), ['class' => 'form-control']) !!}
                     {!! $errors->first('start', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="form-group {{ $errors->has('image_id') ? 'has-error' : ''}}">
                 {!! Form::label('image_id', trans('end'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-3">
-                    {!! Form::date('enddate', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+                    {!! Form::date('enddate', \Carbon\Carbon::now('America/new_york'), ['class' => 'form-control']) !!}
                     {!! $errors->first('startdate', '<p class="help-block">:message</p>') !!}
                 </div>
                 <div class="col-sm-3">
-                    {!! Form::time('end', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+                    {!! Form::time('end', \Carbon\Carbon::now('America/new_york'), ['class' => 'form-control']) !!}
                     {!! $errors->first('end', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
