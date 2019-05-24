@@ -33,7 +33,7 @@ class notifyUsersWithTotalHours implements ShouldQueue
     public function handle()
     {
         foreach ($this->users as $user) {
-            $user->notify(new WeeklyReport($user, $user->timetrackForLastWeek()));
+            $user->notify(new WeeklyReport($user, $user->timetrackForLastWeek($user)));
         }
     }
 }

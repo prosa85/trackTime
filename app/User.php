@@ -41,10 +41,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Timetrack')->where('week',$week)->get();
 
     }
-    public function timetrackForLastWeek(){
+    public function timetrackForLastWeek($user){
         $week = Carbon::now()->weekOfYear -1;
         // dump($week);
-        return $this->timetrackForWeek($week);
+        return $this->timetrack()->forWeek($week, $user)->get();
     }
 
     public static function isAdmin(){
