@@ -14,7 +14,7 @@ class ModifyUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean("tracking_hours")->default(0)->after("email");
+            $table->boolean("tracking_hours")->nullable()->default(0)->after("email");
         });
     }
 
