@@ -27,6 +27,11 @@ Route::get('/home', function () {
 
     return view('welcome');
 });
+Route::get('/job', function () {
+
+    App\Jobs\notifyUsersWithTotalHours::dispatch();
+});
+
 Route::get('/developer', function(){
 	return view('about.developer');
 });

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 
 use Auth;
 class User extends Authenticatable
@@ -40,8 +41,17 @@ class User extends Authenticatable
         return $this->hasMany('App\Timetrack')->where('week',$week)->get();
 
     }
+    public function timetrackForLastWeek(){
+        $week = Carbon::now()->weekOfYear -1;
+        // dump($week);
+        return $this->timetrackForWeek($week);
+    }
 
     public static function isAdmin(){
         return Auth::user()->role ==3;
+    }
+
+    public function isTracking(){
+        return $this->where('tracking_hours', 1)->get();
     }
 }

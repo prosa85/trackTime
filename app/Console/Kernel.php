@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Jobs\notifyUsersWithTotalHours;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,6 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->job(new notifyUsersWithTotalHours)->weeklyOn(1, '8:00');;
         // $schedule->command('inspire')
         //          ->hourly();
     }
