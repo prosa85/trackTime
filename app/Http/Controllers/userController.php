@@ -16,7 +16,7 @@ class userController extends Controller
     }
 
     public function index(){
-    	
+
         $users =  User::getUsers()->get();
     	return view('user.index',compact('users'));
     }
@@ -33,6 +33,7 @@ class userController extends Controller
             $user->role = $request->role;
             $user->email = $request->email;
             $user->name = $request->name;
+            $user->tracking_hours = $request->tracking_hours;
             $user->save();
         }
     	return redirect('users');
@@ -43,7 +44,7 @@ class userController extends Controller
     public function store($id, Request $request){
         if (\Auth::user()->role==3){
             User::create($request->all());
-            
+
         }
         return redirect('users');
 

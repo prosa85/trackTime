@@ -8,7 +8,7 @@
 		<legend>User</legend>
 
 
-		
+
 		<div class="form-group">
 			<label for="">Name</label>
 			<input type="text" class="form-control" name="name" id="name" placeholder="Input field" value="{{$user->name }}">
@@ -17,11 +17,15 @@
 			<label for="">Email</label>
 			<input type="text" class="form-control" name="email" id="role" placeholder="Input field" value="{{$user->email }}">
 		</div>
+        <div class="form-group">
+            <label for="">Tracking Hours</label>
+            <input type="text" class="form-control" name="tracking_hours" id="role" placeholder="Input field" value="{{$user->tracking_hours }}">
+        </div>
 		<div class="form-group">
 			<label for="">Role</label>
 			<input type="text" class="form-control" name="role" id="role" placeholder="Input field" value="{{$user->role }}">
 		</div>
-		
+
 
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
@@ -43,15 +47,15 @@
             @foreach($times as $item)
                 {{-- */$x++;/* --}}
                 <tr>
-                    
+
                     <td><a href='/timetrack/week/{{ $item->week }}/user/{{$item->user->id}}'>{{ $item->week }}</a></td>
                     @if($user->role>1)
                         <td>{{ $item->user->name }}</td>
                     @endif
-                    
+
                     <td>{{ $item->start }}</td><td>{{ $item->end }}</td><td> {{$item->hours}} </td>
                     <td>
-                        
+
                         <a href="{{ url('/timetrack/' . $item->id . '/edit') }}" class="btn btn-primary btn-xs" title="Edit Time"><span class="glyphicon glyphicon-pencil" aria-hidden="true"/></a>
                         {!! Form::open([
                             'method'=>'DELETE',
