@@ -6,11 +6,12 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Notifications\TrackMessage;
 
 class WeeklyReport extends Notification
 {
     use Queueable;
-
+    protected $user,$times,$total,$week;
     /**
      * Create a new notification instance.
      *
@@ -19,7 +20,9 @@ class WeeklyReport extends Notification
     public function __construct($user, $timetrack)
     {
         $this->user = $user;
+        $this->times = $timetrack;
         $this->total = $timetrack->sum('hours');
+        $this->week = $timetrack->first()->week? $timetrack->first()->week : Carbon::now()->weekOfYear() - 1;
     }
 
     /**
@@ -41,8 +44,9 @@ class WeeklyReport extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->greeting('Hello '. $this->user->name. ',')
+        return (new TrackMessage)
+                    ->greeting('Hello '. $this->user->name. ', Here is your report for Week '. $this->week)
+                    ->addtimes($this->times)
                     ->line('Your Accumulated hours for last week is:'. $this->total)
                     ->action('Update hours', url('/'))
                     ->line('Thank you for using timeTrack!');
