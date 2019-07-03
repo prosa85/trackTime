@@ -53,6 +53,9 @@ class TimetrackController extends Controller
         $times->transform(function($user){
             $hours = ['user'=>$user[0]->user_id,'week'=> $user[0]->week ,'hours'=>$user->sum('hours') ];
             $date = new Carbon($user[0]->start);
+            $date->setWeekStartsAt(Carbon::SUNDAY);
+            $date->setWeekEndsAt(Carbon::SATURDAY);
+
             $range= 'from '. $date->startOfWeek()->format('m/d/y').'- to -'. $date->endOfWeek()->format('m/d/y');
             $hours['for_dates'] = $range;
             if($hours['user']==1){
