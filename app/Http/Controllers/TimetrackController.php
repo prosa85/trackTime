@@ -32,9 +32,9 @@ class TimetrackController extends Controller
 
         $timetrack = $times->paginate(15);
         $sum = $timetrack->sum('hours');
-
+        $total = $this->reportForWeek($timetrack->first()->week);
         // dd($times->get()->toArray());
-        return view('timetrack.index', compact('timetrack','user', 'sum'));
+        return view('timetrack.index', compact('timetrack','user', 'sum','total'));
     }
 
     public function weekForUser($week, User $user){
@@ -42,8 +42,8 @@ class TimetrackController extends Controller
         $times= Timetrack::forWeek($week,$user)->orderBy('start','ascd');
         $timetrack = $times->paginate(15);
         $sum = $timetrack->sum('hours');
-        
-        return view('timetrack.index', compact('timetrack','user','week','sum'));
+        $total = $this->reportForWeek($week);
+        return view('timetrack.index', compact('timetrack','user','week','sum','total'));
     }
 
     public function reportForWeek($week){
@@ -51,17 +51,24 @@ class TimetrackController extends Controller
 
         $times= Timetrack::where('week',$week)->whereYear('created_at', $now->year)->get()->groupBy('user_id');
         $times->transform(function($user){
-            $hours = ['user'=>$user[0]->user_id ,'hours'=>$user->sum('hours')];
+            $hours = ['user'=>$user[0]->user_id,'week'=> $user[0]->week ,'hours'=>$user->sum('hours') ];
+            $date = new Carbon($user[0]->start);
+            $range= 'from '. $date->startOfWeek()->format('m/d/y').'- to -'. $date->endOfWeek()->format('m/d/y');
+            $hours['for_dates'] = $range;
             if($hours['user']==1){
-                $hours['total'] = $hours['hours'] * 20;
+                $hours['name']= "Pablo Rosa";
+                $hours['total_in_dollars'] = $hours['hours'] * 20;
+                $hours['hours_in_paycheck'] = $hours['hours'];
             }
             else{
-                $hours['total'] = $hours['hours'] * 5;
+                $hours['name'] = "Gustavo Diaz";
+                $hours['total_in_dollars'] = $hours['hours'] * 5;
+                $hours['hours_in_paycheck']= $hours['total_in_dollars']/20;
             }
             return $hours;
         });
 //        return $hours;
-        return ['data'=>$times,'total'=>$times->sum('total')];//view('timetrack.week', compact('hours'));
+        return ['data'=>$times,'total_in_dollars'=>$times->sum('total_in_dollars'), 'total_hours_in_paycheck'=> $times->sum('hours_in_paycheck')];//view('timetrack.week', compact('hours'));
 
     }
 

@@ -68,6 +68,10 @@
                 </tr>
             </tbody>
         </table>
+        @if(Auth::user()->id==1)
+        <div>Paycheck Total ${{ $total['total_in_dollars'] }}</div>
+        <div>Paycheck Total hours {{ $total['total_hours_in_paycheck'] }}</div>
+        @endif
         <div class="text-center">
                 <div class="pagination"> {!! $timetrack->render() !!} </div>
         </div>
