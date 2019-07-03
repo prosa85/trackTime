@@ -46,6 +46,25 @@ class TimetrackController extends Controller
         return view('timetrack.index', compact('timetrack','user','week','sum'));
     }
 
+    public function reportForWeek($week){
+        $now = Carbon::now();
+
+        $times= Timetrack::where('week',$week)->whereYear('created_at', $now->year)->get()->groupBy('user_id');
+        $times->transform(function($user){
+            $hours = ['user'=>$user[0]->user_id ,'hours'=>$user->sum('hours')];
+            if($hours['user']==1){
+                $hours['total'] = $hours['hours'] * 20;
+            }
+            else{
+                $hours['total'] = $hours['hours'] * 5;
+            }
+            return $hours;
+        });
+//        return $hours;
+        return ['data'=>$times,'total'=>$times->sum('total')];//view('timetrack.week', compact('hours'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

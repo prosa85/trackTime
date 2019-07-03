@@ -13,6 +13,7 @@ class Timetrack extends Model
      * @var string
      */
     protected $table = 'timetracks';
+    protected $appends =['hours'];
 
     /**
     * The database primary key value.
