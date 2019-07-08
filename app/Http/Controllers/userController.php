@@ -41,8 +41,10 @@ class userController extends Controller
 
     }
 
-    public function store($id, Request $request){
+    public function store(Request $request){
         if (\Auth::user()->role==3){
+            $request['tracking_hours'] = 1;
+            $request['password'] = bcrypt('test');
             User::create($request->all());
 
         }
