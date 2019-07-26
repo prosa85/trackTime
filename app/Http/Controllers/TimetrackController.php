@@ -46,11 +46,11 @@ class TimetrackController extends Controller
         return view('timetrack.index', compact('timetrack','user','week','sum','total'));
     }
 
-    public function reportForWeek($week){
-        $now = Carbon::now();
+    public function reportForWeek($week ){
 
+        $now = Carbon::now();
         $times= Timetrack::where('week',$week)->whereYear('created_at', $now->year)->get()->groupBy('user_id');
-        $times->transform(function($user){
+        $times->transform(function($user) use ($week){
             $hours = ['user'=>$user[0]->user_id,'week'=> $user[0]->week ,'hours'=>$user->sum('hours') ];
             $date = new Carbon($user[0]->start);
             $date->setWeekStartsAt(Carbon::SUNDAY);
@@ -58,15 +58,20 @@ class TimetrackController extends Controller
 
             $range= 'from '. $date->startOfWeek()->format('m/d/y').'- to -'. $date->endOfWeek()->format('m/d/y');
             $hours['for_dates'] = $range;
+            $rates = [20,5];
+            if( $week > 30)
+            {
+                $rates = [25,6];
+            }
             if($hours['user']==1){
-                $hours['name']= "Pablo Rosa";
-                $hours['total_in_dollars'] = $hours['hours'] * 20;
+                $hours['name']= "Pablo Rosa ->" . $rates[0];
+                $hours['total_in_dollars'] = $hours['hours'] * $rates[0];
                 $hours['hours_in_paycheck'] = $hours['hours'];
             }
             else{
-                $hours['name'] = "Gustavo Diaz";
-                $hours['total_in_dollars'] = $hours['hours'] * 5;
-                $hours['hours_in_paycheck']= $hours['total_in_dollars']/20;
+                $hours['name'] = "Gustavo Diaz ->".$rates[1];
+                $hours['total_in_dollars'] = $hours['hours'] * $rates[1];
+                $hours['hours_in_paycheck']= $hours['total_in_dollars']/$rates[0];
             }
             return $hours;
         });
