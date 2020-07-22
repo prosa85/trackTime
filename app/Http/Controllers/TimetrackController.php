@@ -21,7 +21,7 @@ class TimetrackController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(Request $request)
     {   
         if(!\Auth::id()){
             
@@ -29,7 +29,9 @@ class TimetrackController extends Controller
         }
         $user = \Auth::user();
         $times= Timetrack::forUser()->orderBy('start','desc');
-
+        if ($request->has("company")){
+            $times = $times->ForCompany($request->company);
+        }
         $timetrack = $times->paginate(15);
         $sum = $timetrack->sum('hours');
         $total = $this->reportForWeek($timetrack->first()->week);

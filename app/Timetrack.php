@@ -27,7 +27,7 @@ class Timetrack extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','start','end','week','commit'];
+    protected $fillable = ['user_id','start','end','week','commit', 'company'];
 
     protected $appents = ['hours','user'];
 
@@ -55,9 +55,15 @@ class Timetrack extends Model
         $now = Carbon::now();
         return $query->where([['week',$week],['user_id',$user->id]])->whereYear('created_at', $now->year);
     }
+
     public function scopeForPagos($query){
         
         return $query->get()->keyBy('week')->groupBy('user_id');
+    }
+
+    public function scopeForCompany($query, $company){
+
+        return $query->where('company', $company);
     }
 
     public function user(){
