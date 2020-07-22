@@ -17,13 +17,13 @@ class AddPaidField extends Migration
     {
         Schema::table('timetracks', function (Blueprint $table) {
             Schema::table('timetracks', function (Blueprint $table) {
-                $table->boolean('paid')->default(true);
+                $table->boolean('paid')->default(false);
             });
 
             $now = Carbon::now();
-            $times = Timetrack::whereYear('created_at', $now->year)->get();
+            $times = Timetrack::whereYear('created_at','!=',$now->year)->get();
             $times->each( function ($item){
-                $item->paid = false;
+                $item->paid = true;
                 $item->save();
             });
         });

@@ -52,6 +52,6 @@ class User extends Authenticatable
     }
 
     public function isTracking(){
-        return $this->where('tracking_hours', 1)->get();
+        //return $this->where('tracking_hours', 1)->get();
     }
 }

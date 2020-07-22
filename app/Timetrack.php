@@ -13,7 +13,7 @@ class Timetrack extends Model
      * @var string
      */
     protected $table = 'timetracks';
-    protected $appends =['hours'];
+    protected $appends =['hours', 'companyName'];
 
     /**
     * The database primary key value.
@@ -33,6 +33,14 @@ class Timetrack extends Model
 
     public function getStartAttribute($value){
         return Carbon::createFromTimestamp($value)->toDayDateTimeString();
+    }
+    public function getCompanyNameAttribute(){
+        switch ($this->attributes["company"]){
+            case 1: return "DSL";
+            case 2: return "Altruist";
+
+            return "error";
+        }
     }
 
     public function getEndAttribute($value){

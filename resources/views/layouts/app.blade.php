@@ -56,6 +56,7 @@
                         @if (Auth::user()->isAdmin())
                             <li><a href="{{ url('/users') }}">Users</a></li>
                             <li><a href="{{ url('/cuentas') }}">Cuentas</a></li>
+                            <li><a href="{{ url('/get-paid/2') }}">Get Paid by Altruist</a></li>
                             <li><a href="{{ url('/pagos') }}">Pagos</a></li>
                             <li><a class="btn" v-on:click="setShowCommits()">Hide With Vue</a></li>
 

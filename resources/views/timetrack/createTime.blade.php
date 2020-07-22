@@ -1,4 +1,4 @@
-<h1>Create New Time Track</h1>
+<h1>Create New Time Entry</h1>
     <hr/>
 
     {!! Form::open(['url' => '/timetrack', 'class' => 'form-horizontal']) !!}
@@ -32,6 +32,7 @@
                     {!! Form::text('commit', null, ['class' => 'form-control', 'required'=>'true']) !!}
                     {!! $errors->first('commit', '<p class="help-block">:message</p>') !!}
                 </div>
+
                 @else
                 <div class="col-sm-6">
                     {!! Form::text('commit', null, ['class' => 'form-control']) !!}
@@ -40,6 +41,15 @@
                 @endif
 
             </div>
+            <div class="form-group">
+                {!! Form::label('Company', trans('Company id'), ['class' => 'col-sm-3 control-label']) !!}
+                <div class="col-sm-6">
+                    {!! Form::select('company', ['1' => 'DSL', '2' => 'Altruist'], 2, ['class' => 'form-control']) !!}
+                    {!! $errors->first('company', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+
+
 
 
     <div class="form-group">

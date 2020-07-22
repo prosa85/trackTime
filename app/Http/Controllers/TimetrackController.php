@@ -108,6 +108,7 @@ class TimetrackController extends Controller
         $data['week'] = Carbon::parse($request->startdate .' '. $request->start)->weekOfYear;
         $data['end'] = Carbon::parse($request->enddate .' '. $request->end)->timestamp;
         $data['commit'] = $request->commit;
+        $data['company'] = $request->company;
         $data['user_id'] = \Auth::id();
         // dd($data);
         
@@ -185,5 +186,18 @@ class TimetrackController extends Controller
         Session::flash('flash_message', 'Timetrack deleted!');
 
         return redirect('timetrack');
+    }
+
+    public function getPaidFromCompany($company){
+        $pay = Timetrack::where([['company', $company], ['paid', 0]])->get();
+
+        $pay->each(function($item) {
+            $item->paid = true;
+            $item->save();
+        });
+        $sum = $pay->sum('hours');
+        Session::flash('flash_message', 'Success: ' . $pay->sum("hours").' Hours Paid');
+        return redirect('timetrack');
+
     }
 }

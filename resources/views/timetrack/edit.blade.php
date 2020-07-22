@@ -25,11 +25,20 @@
                     {!! $errors->first('start', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
+
             <div class="form-group {{ $errors->has('image_id') ? 'has-error' : ''}}">
                 {!! Form::label('end', trans('timetracks.end'), ['class' => 'col-sm-3 control-label']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('end', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('end', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+
+            <div class="form-group {{ $errors->has('company') ? 'has-error' : ''}}">
+                {!! Form::label('Company', trans('timetracks.company'), ['class' => 'col-sm-3 control-label']) !!}
+                <div class="col-sm-6">
+                    {!! Form::text('company', null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('Company', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
 

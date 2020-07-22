@@ -38,6 +38,7 @@ Route::get('/developer', function(){
 Route::get('/contact', function(){
 	return view('about.contactme');
 });
+Route::get('get-paid/{company}', 'TimetrackController@getPaidFromCompany');
 Route::post('file','addFileController@add');
 
 Route::group(['middleware' => ['web', 'auth']], function () {
