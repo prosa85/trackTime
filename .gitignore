@@ -5,3 +5,4 @@ Homestead.json
 index original.html
 lines to run.txt
 .env
+/vendor/doctrine/instantiator/.doctrine-project.json

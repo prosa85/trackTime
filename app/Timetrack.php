@@ -71,7 +71,7 @@ class Timetrack extends Model
 
     public function scopeForCompany($query, $company){
 
-        return $query->where('company', $company);
+        return $query->where([['company', $company],['paid', true]]);
     }
 
     public function user(){
