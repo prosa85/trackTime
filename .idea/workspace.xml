@@ -10,10 +10,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e01b4272-5cc4-4a13-9049-162618c756fd" name="Default Changelist" comment="Adding paiment for other company and the option to update the Company">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Timetrack.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Timetrack.php" afterDir="false" />
-    </list>
+    <list default="true" id="e01b4272-5cc4-4a13-9049-162618c756fd" name="Default Changelist" comment="remove vendor" />
     <list id="de929c95-e257-43d5-a907-c42ef35ab8e9" name="IGNORE" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +155,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595367101181</updated>
-      <workItem from="1595367105530" duration="11871000" />
+      <workItem from="1595367105530" duration="12328000" />
     </task>
     <task id="LOCAL-00001" summary="adding company to time track">
       <created>1595436278636</created>
@@ -188,7 +185,21 @@
       <option name="project" value="LOCAL" />
       <updated>1595460136763</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="filter out paid times">
+      <created>1595525288133</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1595525288133</updated>
+    </task>
+    <task id="LOCAL-00006" summary="remove vendor">
+      <created>1595525330847</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1595525330847</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,7 +226,9 @@
     <MESSAGE value="adding company to time track" />
     <MESSAGE value="adding paid to time track" />
     <MESSAGE value="Adding paiment for other company and the option to update the Company" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding paiment for other company and the option to update the Company" />
+    <MESSAGE value="filter out paid times" />
+    <MESSAGE value="remove vendor" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove vendor" />
   </component>
   <component name="WindowStateProjectService">
     <state x="698" y="302" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1595434228576">
@@ -226,9 +239,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="798" y="416" key="VCS.EditChangelistDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1595436161581" />
-    <state x="560" y="280" width="1008" height="520" key="Vcs.Push.Dialog.v2" timestamp="1595460182439">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="420" y="233" width="1008" height="520" key="Vcs.Push.Dialog.v2" timestamp="1595525388821">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="420" y="233" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1595525388821" />
     <state x="560" y="280" width="1008" height="520" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1595460182439" />
     <state x="763" y="461" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595435910660">
       <screen x="0" y="0" width="1920" height="1080" />
