@@ -29,10 +29,12 @@ class TimetrackController extends Controller
         }
         $user = \Auth::user();
         $times= Timetrack::forUser()->orderBy('start','desc');
+        $paginate = 15;
         if ($request->has("company")){
             $times = $times->ForCompany($request->company);
+            $paginate = 100;
         }
-        $timetrack = $times->paginate(15);
+        $timetrack = $times->paginate($paginate);
         $sum = $timetrack->sum('hours');
         $total = $this->reportForWeek($timetrack->first()->week);
         // dd($times->get()->toArray());
