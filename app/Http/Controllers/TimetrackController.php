@@ -36,7 +36,7 @@ class TimetrackController extends Controller
         }
         $timetrack = $times->paginate($paginate);
         $sum = $timetrack->sum('hours');
-        $total = $this->reportForWeek($timetrack->first()->week);
+        $total =$sum * 50;  //$this->reportForWeek($timetrack->first()->week);
         // dd($times->get()->toArray());
         return view('timetrack.index', compact('timetrack','user', 'sum','total'));
     }

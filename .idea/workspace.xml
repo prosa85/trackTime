@@ -10,7 +10,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e01b4272-5cc4-4a13-9049-162618c756fd" name="Default Changelist" comment="change filter to show un paid hours">
+    <list default="true" id="e01b4272-5cc4-4a13-9049-162618c756fd" name="Default Changelist" comment="changing the paginate count for company id">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TimetrackController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TimetrackController.php" afterDir="false" />
     </list>
@@ -160,7 +160,7 @@
       <updated>1595367101181</updated>
       <workItem from="1595367105530" duration="12328000" />
       <workItem from="1595617010343" duration="542000" />
-      <workItem from="1608151289980" duration="188000" />
+      <workItem from="1608151289980" duration="674000" />
     </task>
     <task id="LOCAL-00001" summary="adding company to time track">
       <created>1595436278636</created>
@@ -211,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595617063269</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="changing the paginate count for company id">
+      <created>1608151544549</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1608151544550</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,29 +249,13 @@
     <MESSAGE value="filter out paid times" />
     <MESSAGE value="remove vendor" />
     <MESSAGE value="change filter to show un paid hours" />
-    <option name="LAST_COMMIT_MESSAGE" value="change filter to show un paid hours" />
+    <MESSAGE value="changing the paginate count for company id" />
+    <option name="LAST_COMMIT_MESSAGE" value="changing the paginate count for company id" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="698" y="302" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1595434228576">
+    <state x="560" y="280" key="Vcs.Push.Dialog.v2" timestamp="1608151546825">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="698" y="302" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1595434228576" />
-    <state x="798" y="416" key="VCS.EditChangelistDialog" timestamp="1595436161581">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="798" y="416" key="VCS.EditChangelistDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1595436161581" />
-    <state x="560" y="280" width="1008" height="520" key="Vcs.Push.Dialog.v2" timestamp="1595617065460">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="420" y="233" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1595525388821" />
-    <state x="560" y="280" width="1008" height="520" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1595617065460" />
-    <state x="763" y="461" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595435910660">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="763" y="461" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1080@0.0.1920.1080" timestamp="1595435910660" />
-    <state x="625" y="202" width="670" height="676" key="search.everywhere.popup" timestamp="1595457684211">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="625" y="202" width="670" height="676" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1595457684211" />
+    <state x="560" y="280" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1608151546825" />
   </component>
 </project>
