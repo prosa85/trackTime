@@ -11,8 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e01b4272-5cc4-4a13-9049-162618c756fd" name="Default Changelist" comment="changing the paginate count for company id">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TimetrackController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TimetrackController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/timetrack/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/timetrack/index.blade.php" afterDir="false" />
     </list>
     <list id="de929c95-e257-43d5-a907-c42ef35ab8e9" name="IGNORE" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -160,7 +159,7 @@
       <updated>1595367101181</updated>
       <workItem from="1595367105530" duration="12328000" />
       <workItem from="1595617010343" duration="542000" />
-      <workItem from="1608151289980" duration="674000" />
+      <workItem from="1608151289980" duration="863000" />
     </task>
     <task id="LOCAL-00001" summary="adding company to time track">
       <created>1595436278636</created>
@@ -218,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608151544550</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="changing the paginate count for company id">
+      <created>1608154258317</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1608154258318</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,9 +259,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="changing the paginate count for company id" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="560" y="280" key="Vcs.Push.Dialog.v2" timestamp="1608151546825">
+    <state x="560" y="280" key="Vcs.Push.Dialog.v2" timestamp="1608154259849">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="560" y="280" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1608151546825" />
+    <state x="560" y="280" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1608154259849" />
   </component>
 </project>
